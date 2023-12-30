@@ -1,21 +1,21 @@
 local plugins = {
   -- Override plugin definition options
   {
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			-- format & linting
-			{
-				"jose-elias-alvarez/null-ls.nvim",
-				config = function()
-					require("custom.plugins.lsp.null-ls")
-				end,
-			},
-		},
-		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.plugins.lsp")
-		end, -- Override to setup mason-lspconfig
-	},
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      -- format & linting
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require "custom.plugins.lsp.null-ls"
+        end,
+      },
+    },
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.plugins.lsp"
+    end, -- Override to setup mason-lspconfig
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -135,15 +135,15 @@ local plugins = {
     suggestion = { enabled = false },
     panel = { enabled = false },
     config = function()
-       require("copilot").setup({})
+      require("copilot").setup {}
     end,
   },
 
   {
-  "zbirenbaum/copilot-cmp",
-  config = function ()
-    require("copilot_cmp").setup()
-  end
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
   },
 
   -- Rainbow brackets plugin
@@ -153,35 +153,8 @@ local plugins = {
     config = function()
       require("indent_blankline").setup {
         use_treesitter = true,
-        space_char_blankline = " ",
-        show_current_context_start = true,
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-          "IndentBlanklineIndent3",
-          "IndentBlanklineIndent4",
-          "IndentBlanklineIndent5",
-          "IndentBlanklineIndent6",
-        },
-        show_current_context = true,
         filetype_exclude = { "help", "dashboard", "dashpreview", "NvimTree", "vista", "sagahover" },
         buftype_exclude = { "terminal", "nofile" },
-        context_patterns = {
-          "class",
-          "function",
-          "method",
-          "block",
-          "list_literal",
-          "selector",
-          "^if",
-          "^table",
-          "if_statement",
-          "while",
-          "for",
-          "loop",
-          "fn",
-          "func",
-        },
       }
     end,
   },
@@ -190,10 +163,10 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     opts = {
       sources = {
-       { name = "copilot", group_index = 2 },
-       { name = "nvim_lsp", group_index = 2 },
-       { name = "buffer", group_index = 2 },
-       { name = "path", group_index = 2 },
+        { name = "copilot", group_index = 2 },
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "buffer", group_index = 2 },
+        { name = "path", group_index = 2 },
       },
     },
     dependencies = {
@@ -203,7 +176,7 @@ local plugins = {
           require("copilot_cmp").setup()
         end,
       },
-    }
+    },
   },
 }
 
