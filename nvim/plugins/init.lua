@@ -1,4 +1,3 @@
----@type {[PluginName]: NvPluginConfig|false}
 local plugins = {
   -- Override plugin definition options
   {
@@ -133,52 +132,18 @@ local plugins = {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = { "InsertEnter", "BufEnter", "BufRead" },
+    suggestion = { enabled = false },
+    panel = { enabled = false },
     config = function()
-      require("copilot").setup({
-        panel = {
-          enabled = true,
-          auto_refresh = true,
-          keymap = {
-            jump_prev = "[[",
-            jump_next = "]]",
-            accept = "<CR>",
-            refresh = "gr",
-            open = "<M-CR>"
-          },
-          layout = {
-            position = "bottom", -- | top | left | right
-            ratio = 0.4
-          },
-        },
-        suggestion = {
-          enabled = true,
-          auto_accept = true,
-          auto_trigger = true,
-          debounce = 75,
-          keymap = {
-            accept = "<Tab>",
-            accept_word = false,
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
-        },
-        filetypes = {
-          yaml = false,
-          markdown = false,
-          help = false,
-          gitcommit = false,
-          gitrebase = false,
-          hgcommit = false,
-          svn = false,
-          cvs = false,
-          ["."] = false,
-        },
-        copilot_node_command = 'node', -- Node.js version must be > 16.x
-        server_opts_overrides = {},
-      })
+       require("copilot").setup({})
     end,
+  },
+
+  {
+  "zbirenbaum/copilot-cmp",
+  config = function ()
+    require("copilot_cmp").setup()
+  end
   },
 
   -- Rainbow brackets plugin
@@ -219,6 +184,26 @@ local plugins = {
         },
       }
     end,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = {
+      sources = {
+       { name = "copilot", group_index = 2 },
+       { name = "nvim_lsp", group_index = 2 },
+       { name = "buffer", group_index = 2 },
+       { name = "path", group_index = 2 },
+      },
+    },
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    }
   },
 }
 
