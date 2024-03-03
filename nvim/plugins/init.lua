@@ -1,5 +1,19 @@
 local plugins = {
   -- Override plugin definition options
+
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
+    ft = { "rust" },
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require "custom.plugins.lsp.null-ls"
+    end,
+  },
+
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -64,6 +78,7 @@ local plugins = {
         "html-lsp",
         "typescript-language-server",
         "deno",
+        "prettier",
 
         -- docker
         "dockerfile-language-server",
@@ -163,8 +178,8 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     opts = {
       sources = {
-        { name = "copilot", group_index = 2 },
         { name = "nvim_lsp", group_index = 2 },
+        { name = "copilot", group_index = 2 },
         { name = "buffer", group_index = 2 },
         { name = "path", group_index = 2 },
       },

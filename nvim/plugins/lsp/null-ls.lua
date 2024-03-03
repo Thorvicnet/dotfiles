@@ -24,6 +24,9 @@ local sources = {
 	b.formatting.rustfmt,
 	b.diagnostics.cppcheck,
 
+  -- rust
+
+
 	-- go
 	b.formatting.gofmt,
 	b.formatting.goimports_reviser,
