@@ -7,7 +7,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require("lspconfig")
 
-local servers = { "html", "cssls", "tsserver", "clangd", "gopls", "pyright", "ocaml-lsp" }
+local servers = { "html", "cssls", "ts_ls", "clangd", "gopls", "pyright", "ocamllsp"}
 
 for _, lsp in ipairs(servers) do
 	local opts = {

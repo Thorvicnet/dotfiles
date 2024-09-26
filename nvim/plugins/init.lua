@@ -8,7 +8,7 @@ local plugins = {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     config = function()
       require "custom.plugins.lsp.null-ls"
     end,
@@ -19,7 +19,7 @@ local plugins = {
     dependencies = {
       -- format & linting
       {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         config = function()
           require "custom.plugins.lsp.null-ls"
         end,
@@ -54,6 +54,7 @@ local plugins = {
         "toml",
         "bash",
         "csv",
+        "ocaml",
       },
       indent = {
         enable = true,
@@ -168,6 +169,7 @@ local plugins = {
   -- Rainbow brackets plugin
   {
     "lukas-reineke/indent-blankline.nvim",
+    version = "2.20.8",
     event = "BufRead",
     config = function()
       require("indent_blankline").setup {
