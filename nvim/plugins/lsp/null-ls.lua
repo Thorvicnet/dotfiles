@@ -39,6 +39,9 @@ local sources = {
 	b.diagnostics.flake8.with({
 		diagnostics_format = "#{m} [#{c}]",
 	}),
+
+  --ocaml
+  b.formatting.ocamlformat,
 }
 
 null_ls.setup({

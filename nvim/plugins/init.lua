@@ -122,6 +122,10 @@ local plugins = {
         -- sql
         "sqlfluff",
         "sqls",
+
+        -- ocaml
+        "ocaml-lsp",
+        "ocamlformat",
       },
     },
   },
@@ -143,23 +147,23 @@ local plugins = {
   },
 
   -- Copilot
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = { "InsertEnter", "BufEnter", "BufRead" },
-    suggestion = { enabled = false },
-    panel = { enabled = false },
-    config = function()
-      require("copilot").setup {}
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = { "InsertEnter", "BufEnter", "BufRead" },
+  --   suggestion = { enabled = false },
+  --   panel = { enabled = false },
+  --   config = function()
+  --     require("copilot").setup {}
+  --   end,
+  -- },
 
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   config = function()
+  --     require("copilot_cmp").setup()
+  --   end,
+  -- },
 
   -- Rainbow brackets plugin
   {
@@ -179,18 +183,18 @@ local plugins = {
     opts = {
       sources = {
         { name = "nvim_lsp", group_index = 2 },
-        { name = "copilot", group_index = 2 },
+        -- { name = "copilot", group_index = 2 },
         { name = "buffer", group_index = 2 },
         { name = "path", group_index = 2 },
       },
     },
     dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
+      -- {
+      --   "zbirenbaum/copilot-cmp",
+      --   config = function()
+      --     require("copilot_cmp").setup()
+      --   end,
+      -- },
     },
   },
 }
