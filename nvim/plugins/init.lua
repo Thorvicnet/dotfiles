@@ -80,6 +80,8 @@ local plugins = {
         "typescript-language-server",
         "deno",
         "prettier",
+        
+        "bash-language-server",
 
         -- docker
         "dockerfile-language-server",
