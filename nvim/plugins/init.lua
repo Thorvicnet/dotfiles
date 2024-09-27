@@ -89,7 +89,6 @@ local plugins = {
 
         -- rust
         "rust-analyzer",
-        "rustfmt",
 
         -- go
         "gopls",
@@ -105,7 +104,7 @@ local plugins = {
 
         -- python
         "pyright",
-        "flake8",
+        "ruff",
         "black",
         "mypy",
         "pydocstyle",
