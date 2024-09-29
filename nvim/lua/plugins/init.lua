@@ -1,4 +1,4 @@
-local plugins = {
+return {
   -- Override plugin definition options
 
   {
@@ -10,7 +10,7 @@ local plugins = {
   {
     "nvimtools/none-ls.nvim",
     config = function()
-      require "custom.plugins.lsp.null-ls"
+      require "configs.lsp.null-ls"
     end,
   },
 
@@ -21,13 +21,13 @@ local plugins = {
       {
         "nvimtools/none-ls.nvim",
         config = function()
-          require "custom.plugins.lsp.null-ls"
+          require "configs.lsp.null-ls"
         end,
       },
     },
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.plugins.lsp"
+      require "nvchad.configs.lspconfig"
+      require "configs.lsp"
     end, -- Override to setup mason-lspconfig
   },
 
@@ -65,70 +65,70 @@ local plugins = {
   {
     "williamboman/mason.nvim",
     opts = {
-      ensure_installed = {
-        -- markdown
-        "marksman",
-        "misspell",
+      -- ensure_installed = {
+      --   -- markdown
+      --   "marksman",
+      --   "misspell",
 
-        -- lua
-        "lua-language-server",
-        "stylua",
+      --   -- lua
+      --   "lua-language-server",
+      --   "stylua",
 
-        -- web dev
-        "css-lsp",
-        "html-lsp",
-        "typescript-language-server",
-        "deno",
-        "prettier",
+      --   -- web dev
+      --   "css-lsp",
+      --   "html-lsp",
+      --   "typescript-language-server",
+      --   "deno",
+      --   "prettier",
 
-        "bash-language-server",
+      --   "bash-language-server",
 
-        -- docker
-        "dockerfile-language-server",
-        "docker-compose-language-service",
+      --   -- docker
+      --   "dockerfile-language-server",
+      --   "docker-compose-language-service",
 
-        -- rust
-        "rust-analyzer",
+      --   -- rust
+      --   "rust-analyzer",
 
-        -- go
-        "gopls",
-        "glint",
-        "go-debug-adapter",
-        "goimports",
-        "goimports-reviser",
-        "golangci-lint",
-        "golangci-lint-langserver",
-        "golines",
-        "gotests",
-        "gotestsum",
+      --   -- go
+      --   "gopls",
+      --   "glint",
+      --   "go-debug-adapter",
+      --   "goimports",
+      --   "goimports-reviser",
+      --   "golangci-lint",
+      --   "golangci-lint-langserver",
+      --   "golines",
+      --   "gotests",
+      --   "gotestsum",
 
-        -- python
-        "pyright",
-        "ruff",
-        "black",
-        "mypy",
-        "pydocstyle",
-        "pylint",
-        "pyre",
-        "autoflake",
-        "autopep8",
-        "python-lsp-server",
+      --   -- python
+      --   "pyright",
+      --   "ruff",
+      --   "black",
+      --   "mypy",
+      --   "pydocstyle",
+      --   "pylint",
+      --   "pyre",
+      --   "autoflake",
+      --   "autopep8",
+      --   "python-lsp-server",
 
-        -- yaml
-        "terraform-ls",
-        "tflint",
-        "yaml-language-server",
-        "yamlfmt",
-        "yamllint",
+      --   -- yaml
+      --   "terraform-ls",
+      --   "tflint",
+      --   "yaml-language-server",
+      --   "yamlfmt",
+      --   "yamllint",
 
-        -- sql
-        "sqlfluff",
-        "sqls",
+      --   -- sql
+      --   "sqlfluff",
+      --   "sqls",
 
-        -- ocaml
-        "ocaml-lsp",
-        "ocamlformat",
-      },
+      --   -- ocaml
+      --   "ocaml-lsp",
+      --   "ocamlformat",
+      -- },
     },
   },
 
@@ -146,20 +146,26 @@ local plugins = {
         },
       },
     },
+
+    actions = {
+      open_file = {
+        quit_on_open = true,
+      },
+    },
   },
 
   {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
-    -- stylua: ignore
-    keys = {
-      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
-    },
+  -- stylua: ignore
+  keys = {
+    { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+    { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+    { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+    { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+  },
   },
 
   -- Copilot
@@ -184,13 +190,13 @@ local plugins = {
   -- Rainbow brackets plugin
   {
     "lukas-reineke/indent-blankline.nvim",
-    version = "2.20.8",
-    event = "BufRead",
+    main = "ibl",
     config = function()
-      require("indent_blankline").setup {
-        use_treesitter = true,
-        filetype_exclude = { "help", "dashboard", "dashpreview", "NvimTree", "vista", "sagahover" },
-        buftype_exclude = { "terminal", "nofile" },
+      require("ibl").setup {
+        exclude = {
+          filetypes = { "help", "dashboard", "dashpreview", "NvimTree", "vista", "sagahover" },
+          buftypes = { "terminal", nofile },
+        },
       }
     end,
   },
@@ -223,5 +229,3 @@ local plugins = {
     event = "VeryLazy",
   },
 }
-
-return plugins

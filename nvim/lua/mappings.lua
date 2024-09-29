@@ -1,3 +1,4 @@
+require "nvchad.mappings"
 ---@type MappingsConfig
 local M = {}
 
