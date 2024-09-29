@@ -214,6 +214,14 @@ local plugins = {
       -- },
     },
   },
+  {
+    "eandrju/cellular-automaton.nvim",
+    event = "VeryLazy",
+  },
+  {
+    "alec-gibson/nvim-tetris",
+    event = "VeryLazy",
+  },
 }
 
 return plugins
