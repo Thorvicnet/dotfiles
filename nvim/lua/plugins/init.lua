@@ -48,6 +48,7 @@ return {
         "rust",
         "json",
         "cpp",
+        "perl",
         "cuda",
         "dockerfile",
         "yaml",
