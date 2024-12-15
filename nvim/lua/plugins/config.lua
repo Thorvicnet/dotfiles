@@ -29,4 +29,15 @@ return {
     "alec-gibson/nvim-tetris",
     event = "VeryLazy",
   },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        ocamllsp = {
+          mason = false,
+        },
+      },
+    },
+  },
 }
