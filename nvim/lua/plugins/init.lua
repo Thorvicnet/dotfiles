@@ -9,6 +9,9 @@ return {
 
   {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
       require "configs.lsp.null-ls"
     end,
@@ -56,6 +59,7 @@ return {
         "bash",
         "csv",
         "ocaml",
+        "asm"
       },
       indent = {
         enable = true,

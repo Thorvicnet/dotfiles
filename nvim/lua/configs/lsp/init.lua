@@ -19,6 +19,7 @@ local servers = {
   "denols",
   "bashls",
   "perlls",
+  "asm_lsp"
 }
 
 for _, lsp in ipairs(servers) do
