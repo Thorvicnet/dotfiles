@@ -19,4 +19,14 @@ return {
     { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
   },
   },
+
+  {
+    "eandrju/cellular-automaton.nvim",
+    event = "VeryLazy",
+  },
+
+  {
+    "alec-gibson/nvim-tetris",
+    event = "VeryLazy",
+  },
 }
