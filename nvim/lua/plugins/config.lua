@@ -1,5 +1,11 @@
 return {
-  { "sainnhe/sonokai" },
+  {
+    "sainnhe/sonokai",
+    config = function()
+      vim.g.sonokai_style = "andromeda"
+      vim.cmd.colorscheme("sonokai")
+    end,
+  },
 
   "LazyVim/LazyVim",
   opts = {
@@ -37,6 +43,15 @@ return {
         ocamllsp = {
           mason = false,
         },
+      },
+    },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        ocaml = { "ocamlformat" },
       },
     },
   },
