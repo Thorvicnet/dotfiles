@@ -6,11 +6,20 @@ return {
       vim.cmd.colorscheme("sonokai")
     end,
   },
-
-  "LazyVim/LazyVim",
-  opts = {
-    colorscheme = "sonokai",
-  },
+  --
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  --   config = function()
+  --     vim.cmd.colorscheme("kanagawa-lotus")
+  --   end,
+  -- },
+  --
+  -- {
+  --   "sainnhe/gruvbox-material",
+  --   config = function()
+  --     vim.cmd.colorscheme("gruvbox-material")
+  --   end,
+  -- },
 
   {
     "folke/flash.nvim",
@@ -55,4 +64,52 @@ return {
       },
     },
   },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        texlab = {
+          settings = {
+            texlab = {
+              build = {
+                executable = "tectonic",
+                args = {
+                  "-X",
+                  "compile",
+                  "%f",
+                  "--synctex",
+                  "--keep-logs",
+                  "--keep-intermediates",
+                  "-Z",
+                  "shell-escape",
+                },
+                onSave = true,
+                forwardSearchAfter = true,
+              },
+              forwardSearch = {
+                executable = "zathura",
+                args = { "--synctex-forward", "%l:1:%f", "%p" },
+              },
+              chktex = {
+                onOpenAndSave = true,
+                onEdit = true,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  -- {
+  --   "lervag/vimtex",
+  --   config = function()
+  --     vim.g.vimtex_view_method = "zathura"
+  --     vim.g.vimtex_compiler_method = "tectonic"
+  --     vim.g.vimtex_compiler_tectonic = {
+  --       options = { "-Z", "shell-escape" },
+  --     }
+  --   end,
+  -- },
 }
