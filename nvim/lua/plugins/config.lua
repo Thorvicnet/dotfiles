@@ -6,20 +6,20 @@ return {
       vim.cmd.colorscheme("sonokai")
     end,
   },
-  --
-  -- {
-  --   "rebelot/kanagawa.nvim",
-  --   config = function()
-  --     vim.cmd.colorscheme("kanagawa-lotus")
-  --   end,
-  -- },
-  --
-  -- {
-  --   "sainnhe/gruvbox-material",
-  --   config = function()
-  --     vim.cmd.colorscheme("gruvbox-material")
-  --   end,
-  -- },
+
+  {
+    "rebelot/kanagawa.nvim",
+    -- config = function()
+    --   vim.cmd.colorscheme("kanagawa-lotus")
+    -- end,
+  },
+
+  {
+    "sainnhe/gruvbox-material",
+    -- config = function()
+    --   vim.cmd.colorscheme("gruvbox-material")
+    -- end,
+  },
 
   {
     "folke/flash.nvim",
