@@ -46,6 +46,11 @@ return {
   },
 
   {
+    "seandewar/nvimesweeper",
+    event = "VeryLazy",
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
