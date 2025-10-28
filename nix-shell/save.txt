@@ -1,0 +1,133 @@
+brun() {
+
+  local net=0 full=0 mnt=0
+
+  # parse optional flags
+
+  while [ $# -gt 0 ]; do
+
+    case "$1" in
+
+      --net) net=1; shift ;;
+
+      --full) full=1; shift ;;
+
+      --mnt) mnt=1; shift ;;
+
+      *) break ;;
+
+    esac
+
+  done
+
+
+
+  local app="$1"; shift
+
+  local bin; bin="$(nix-bin-of "$app")" || { echo "Cannot resolve $app"; return 1; }
+
+
+
+  local args=(
+
+    --unshare-user-try --unshare-ipc --unshare-pid --unshare-uts --unshare-cgroup-try
+
+    --new-session --die-with-parent
+
+    --proc /proc --dev /dev
+
+    --ro-bind /nix /nix
+
+    --tmpfs /home --dir "/home/$USER" --setenv HOME "/home/$USER"
+
+    --tmpfs /tmp
+
+    --tmpfs "$XDG_RUNTIME_DIR"
+
+    --bind "$XDG_RUNTIME_DIR/wayland-0" "$XDG_RUNTIME_DIR/wayland-0"
+
+    --bind "$XDG_RUNTIME_DIR/bus"       "$XDG_RUNTIME_DIR/bus"
+
+    --setenv XDG_RUNTIME_DIR "$XDG_RUNTIME_DIR"
+
+    --setenv WAYLAND_DISPLAY "${WAYLAND_DISPLAY:-wayland-0}"
+
+    --setenv XDG_SESSION_TYPE wayland
+
+    --setenv XDG_CURRENT_DESKTOP dwl
+
+    --setenv MOZ_ENABLE_WAYLAND 1
+
+    --setenv QT_QPA_PLATFORM wayland
+
+    --setenv SDL_VIDEODRIVER wayland
+
+    --setenv GDK_BACKEND wayland
+
+    --chdir "/home/$USER"
+
+    --ro-bind /etc/passwd /etc/passwd
+
+    --ro-bind /etc/group  /etc/group
+
+    --ro-bind /usr/share/fonts /usr/share/fonts
+
+    --ro-bind /etc/fonts /etc/fonts
+
+    --ro-bind /usr/share/fontconfig /usr/share/fontconfig
+
+    --ro-bind /etc/ssl /etc/ssl
+
+    --ro-bind /usr/share/ca-certificates /usr/share/ca-certificates
+
+  )
+
+
+
+  if [ "$full" -eq 1 ]; then
+
+    # Read-only binds /usr and /etc directly
+
+    args+=(
+
+      --ro-bind /usr /usr
+
+      --ro-bind /etc /etc
+
+    )
+
+  fi
+
+
+
+  if [ "$mnt" -eq 1 ]; then
+
+    # Bind current directory into sandboxed home under ~/mnt
+
+    args+=(
+
+      --bind "$PWD" "/home/$USER/mnt"
+
+    )
+
+  fi
+
+
+
+  if [ "$net" -eq 0 ]; then
+
+    args+=( --unshare-net )  # no network (default)
+
+  else
+
+    args+=( --ro-bind /etc/resolv.conf /etc/resolv.conf
+
+            --ro-bind /etc/hosts /etc/hosts )
+
+  fi
+
+
+
+  bwrap "${args[@]}" "$bin" "$@"
+
+}

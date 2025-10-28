@@ -1,0 +1,67 @@
+format = "[ $directory$character$all](bg:#24272E)"
+right_format = "[$cmd_duration$status$time ](bg:#24272E)"
+add_newline = false
+
+[directory]
+truncation_length = 5
+truncation_symbol = "…/"
+style = "bold dimmed #72CCE8 bg:#24272E"
+format = "[$path]($style)"
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~ GIT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+[git_branch]
+disabled = false
+symbol = " "
+style = "fg:#b79999"
+truncation_length = 5   # length == ABCDE
+format = '[$symbol$branch(:$remote_branch)]($style) ' # this sets path ../../../../
+
+[git_commit]
+disabled = false
+commit_hash_length = 1
+
+[git_state]
+disabled = false
+rebase = "rebasing"
+merge = "merging"
+revert = "reverting"
+cherry_pick = " picking"
+bisect = "bisecting"
+am = "am'ing"
+am_or_rebase = "am/rebase"
+
+[git_status]
+disabled = false
+style= "fg:#5F8575"
+stashed = " ${count} "
+ahead = "󰞙 ${count} "
+behind = "󰞒 ${count} "
+diverged = "󰵉 ${ahead_count} ${behind_count} "
+conflicted = " ${count} "
+deleted = " ${count} "
+renamed = " ${count} "
+modified = " ${count} "
+staged = " ${count} "
+untracked = "󱅘 ${count}"
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ...........       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+
+[cmd_duration]
+min_time = 2
+format = "[$duration]($style)"
+style = "bold #F69C5E bg:#24272E"
+
+[status]
+format = "| [$status]($style)"
+style = "bold #FF6578 bg:#24272E"
+disabled = false
+
+[time]
+time_format = "%H:%M:%S"
+format = "| [$time]($style)"
+style = "bold dimmed blue bg:#24272E"
+disabled = false
+
+[character]
+success_symbol = ""
+error_symbol = ""
