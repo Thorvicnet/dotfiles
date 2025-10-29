@@ -2,3 +2,8 @@
 [Default Applications]
 x-scheme-handler/discord=vesktop.desktop
 application/pdf=org.pwmt.zathura.desktop
+text/html=helium-browser.desktop
+x-scheme-handler/http=helium-browser.desktop
+x-scheme-handler/https=helium-browser.desktop
+x-scheme-handler/about=helium-browser.desktop
+x-scheme-handler/unknown=helium-browser.desktop
