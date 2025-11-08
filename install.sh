@@ -9,6 +9,7 @@ mkdir -p $CONFIG_DIR
 
 # List of files and directories to link
 files_to_link=(
+  "zed"
   "btop"
   "foot"
   "gtk-3.0"
