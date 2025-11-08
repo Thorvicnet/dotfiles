@@ -54,6 +54,7 @@ alias screenwriting="gromit-mpx"
 alias linpeas="curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh -s"
 alias towindows="sudo grub-reboot 2 && sudo reboot"
 alias d="date --iso-8601=seconds"
+alias oops="git add . && git commit --amend --no-edit && git push --force-with-lease"
 
 alias mirrorsgen="sudo ghostmirror -PoclLS Belgium,Germany,France /etc/pacman.d/mirrorlist 30 state,outofdate,morerecent,ping"
 alias mirrorssort="sudo ghostmirror -PmuolsS  /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist light state,outofdate,morerecent,estimated,speed"
@@ -68,7 +69,6 @@ alias statusbarreload="pkill -f 'status_daemon' && (nohup ~/.config/suckless/sta
 alias termbin='nix-shell -p netcat --run "nc termbin.com 9999"'
 
 alias ts="tailscale"
-alias vpn="protonvpn-app"
 function warp() {
     if [ "$1" = "up" ]; then
         sudo systemctl start warp-svc && sleep 1 && warp-cli connect && export WARP_UP="true" && statusbarreload
@@ -101,6 +101,7 @@ source /home/thorvicnet/.config/zsh-syntax-highlighting/fast-syntax-highlighting
 # lazygit
 # rg
 # fd
+# impala
 
 alias nixclean="nix-store --gc"
 alias deepclean="(yes | paru -Scc) && sudo journalctl --vacuum-time=7d && (nix-store --gc >/dev/null 1&>/dev/null) && (sudo pacman -Qdtq | sudo pacman -Rns -)"
