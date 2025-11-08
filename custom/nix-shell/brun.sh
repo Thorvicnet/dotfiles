@@ -10,23 +10,6 @@ nix-bin-of() {
   nix-shell -p "$pkg" --run "command -v ${pkg##*/}"
 }
 
-# `brun` runs an application in a restrictive bubblewrap sandbox.
-#
-# Usage:
-#   brun [flags] <app> [args...]
-#     - Runs the specified application in a sandbox.
-#
-#   brun [flags] cli <app> [command...]
-#     - Launches a sandboxed zsh shell.
-#     - If [command...] is provided, it's executed in the shell.
-#
-# Fallback Behavior:
-# If the binary for <app> cannot be found, it automatically launches a CLI.
-#
-# Flags:
-#   --net:  Enable networking (disabled by default).
-#   --full: Provide more complete read-only binds for /usr, /etc, /lib, /bin.
-#   --mnt:  Bind the current directory to ~/mnt inside the sandbox.
 brun() {
   local net=0 full=0 mnt=0
   # parse optional flags
@@ -44,9 +27,50 @@ brun() {
       mnt=1
       shift
       ;;
+    --help|-h)
+      cat <<'EOF'
+brun - Run applications in a restrictive bubblewrap sandbox
+
+USAGE:
+  brun [FLAGS] <app> [args...]
+    Run the specified application in a sandbox.
+
+  brun [FLAGS] cli <package>...
+    Launch a sandboxed zsh shell with specified packages available.
+
+FLAGS:
+  --net   Enable networking (disabled by default for security)
+  --full  Provide complete read-only binds for /usr, /etc, /lib, /bin
+  --mnt   Bind current directory to ~/mnt inside the sandbox
+  --help  Show this help message
+
+EXAMPLES:
+  brun firefox                    # Run Firefox without network
+  brun --net wget example.com     # Run wget with network enabled
+  brun --mnt --net untrusted-app  # Run app with current dir mounted
+  brun cli python3 node gcc       # Interactive shell with tools
+
+FALLBACK:
+  If the binary for <app> cannot be found, it automatically launches CLI mode.
+
+SECURITY:
+  By default, sandboxed applications have:
+  - No network access (use --net to enable)
+  - Isolated /home, /tmp (tmpfs)
+  - Read-only access to /nix and essential system directories
+  - Wayland display and GPU access for GUI applications
+EOF
+      return 0
+      ;;
     *) break ;;
     esac
   done
+
+  if [ $# -eq 0 ]; then
+    echo "Error: No application specified." >&2
+    echo "Run 'brun --help' for usage information." >&2
+    return 1
+  fi
 
   # mode selection: cli or single app
   local mode_cli=0
