@@ -63,7 +63,7 @@ alias nixhaskell="~/.config/custom/nix-shell/haskell.sh"
 alias nixlatex="~/.config/custom/nix-shell/latex.sh"
 alias nixocaml="~/.config/custom/nix-shell/ocaml.sh"
 
-alias fixscreen="wlr-randr --output DP-1 --mode 1920x1080@74.973 && wlr-randr --output DP-1 --pos -1920,0"
+alias fixscreen="wlr-randr --output HDMI-A-1 --pos 0,0 && wlr-randr --output DP-1 --pos 1920,0"
 
 alias statusbarreload="pkill -f 'status_daemon' && (nohup ~/.config/suckless/status-daemon/status_daemon >/dev/null 2>&1 < /dev/null & )"
 alias termbin='nix-shell -p netcat --run "nc termbin.com 9999"'
