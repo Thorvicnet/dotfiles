@@ -21,6 +21,7 @@ files_to_link=(
   ".zshrc"
   ".zprofile"
   "custom"
+  "nvim"
   "mimeapps.list"
   "starship.toml"
 )
