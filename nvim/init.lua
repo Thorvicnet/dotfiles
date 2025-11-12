@@ -34,17 +34,16 @@ vim.keymap.set("i", "<C-l>", "<Right>", { silent = true })
 
 vim.pack.add({
     {src = "https://github.com/sainnhe/sonokai"},
-    -- {src = "https://github.com/stevearc/oil.nvim"},
     {src = "https://github.com/nvim-mini/mini.pick"},
     {src = "https://github.com/neovim/nvim-lspconfig"},
     {src = "https://github.com/nvim-treesitter/nvim-treesitter"},
     {src = "https://github.com/folke/flash.nvim"},
     {src = "https://github.com/saghen/blink.cmp"},
     {src = "https://github.com/nvim-mini/mini.pairs"},
-    {src = "https://github.com/folke/which-key.nvim"}
+    {src = "https://github.com/folke/which-key.nvim"},
+    {src = "https://github.com/Eandrju/cellular-automaton.nvim"}
 })
 require "mini.pick".setup()
--- require "oil".setup()
 require "flash".setup()
 require("mini.pairs").setup()
 require('blink.cmp').setup({
@@ -59,7 +58,6 @@ vim.keymap.set({ "n","x","o" }, "S", function() require("flash").treesitter() en
 vim.keymap.set({ "n","x","o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
--- vim.keymap.set('n', '<leader>e', ":Oil<CR>")
 vim.lsp.enable({"lua_ls", "clangd", "ocamllsp"})
 vim.keymap.set('n', 'gr', vim.lsp.buf.references,    {desc='Refs'})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition,    {desc='Definition'})
