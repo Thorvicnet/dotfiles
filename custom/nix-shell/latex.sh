@@ -22,4 +22,4 @@ echo "         ,_.-';_,.'\`"
 echo "          \`\"-;\`/"
 echo "            ,'\`"
 
-nix-shell -p texliveMedium tectonic --command zsh
+nix-shell -p texliveMedium tectonic texlab --command zsh

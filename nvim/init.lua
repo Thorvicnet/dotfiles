@@ -52,6 +52,19 @@ require("nvim-treesitter.configs").setup({
       highlight = { enable = false },
     })
 
+-- fzf zoxide is followed with a fzf files
+require('fzf-lua').setup({
+  zoxide = {
+    actions = {
+      ["default"] = function(selected)
+        local path = selected[1]
+        require("fzf-lua").files({ cwd = path })
+      end,
+    },
+  },
+})
+
+
 vim.keymap.set({ "n","x","o" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
 vim.keymap.set({ "n","x","o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
 vim.keymap.set('n', '<leader>ff', ":FzfLua global<CR>")
@@ -59,7 +72,6 @@ vim.keymap.set('n', '<leader>fh', ":FzfLua helptags<CR>")
 vim.keymap.set('n', '<leader>fj', ":FzfLua live_grep<CR>")
 vim.keymap.set('n', '<leader>fd', ":FzfLua diagnostics_document<CR>")
 vim.keymap.set('n', '<leader>fz', ":FzfLua zoxide<CR>")
-vim.lsp.enable({"lua_ls", "clangd", "ocamllsp"})
 vim.keymap.set('n', 'gr', vim.lsp.buf.references,    {desc='Refs'})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition,    {desc='Definition'})
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,   {desc='Declaration'})
@@ -74,6 +86,8 @@ vim.keymap.set('n', '<leader>li', function()
 end, { desc = 'Toggle inlay hints' })
 
 vim.cmd [[set completeopt+=menuone,noselect,popup]]
+
+vim.lsp.enable({"lua_ls", "clangd", "ocamllsp", "texlab"})
 
 -- Needed because treesitter's highlight = false stops it from starting the parser
 vim.api.nvim_create_autocmd("FileType", {
