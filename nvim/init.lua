@@ -24,7 +24,6 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set("i", "<C-h>", "<Left>",  { silent = true })
@@ -34,16 +33,15 @@ vim.keymap.set("i", "<C-l>", "<Right>", { silent = true })
 
 vim.pack.add({
     {src = "https://github.com/sainnhe/sonokai"},
-    {src = "https://github.com/nvim-mini/mini.pick"},
     {src = "https://github.com/neovim/nvim-lspconfig"},
     {src = "https://github.com/nvim-treesitter/nvim-treesitter"},
     {src = "https://github.com/folke/flash.nvim"},
     {src = "https://github.com/saghen/blink.cmp"},
     {src = "https://github.com/nvim-mini/mini.pairs"},
     {src = "https://github.com/folke/which-key.nvim"},
-    {src = "https://github.com/Eandrju/cellular-automaton.nvim"}
+    {src = "https://github.com/Eandrju/cellular-automaton.nvim"},
+    {src = "https://github.com/ibhagwan/fzf-lua"}
 })
-require "mini.pick".setup()
 require "flash".setup()
 require("mini.pairs").setup()
 require('blink.cmp').setup({
@@ -56,8 +54,11 @@ require("nvim-treesitter.configs").setup({
 
 vim.keymap.set({ "n","x","o" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
 vim.keymap.set({ "n","x","o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
+vim.keymap.set('n', '<leader>ff', ":FzfLua global<CR>")
+vim.keymap.set('n', '<leader>fh', ":FzfLua helptags<CR>")
+vim.keymap.set('n', '<leader>fj', ":FzfLua live_grep<CR>")
+vim.keymap.set('n', '<leader>fd', ":FzfLua diagnostics_document<CR>")
+vim.keymap.set('n', '<leader>fz', ":FzfLua zoxide<CR>")
 vim.lsp.enable({"lua_ls", "clangd", "ocamllsp"})
 vim.keymap.set('n', 'gr', vim.lsp.buf.references,    {desc='Refs'})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition,    {desc='Definition'})
