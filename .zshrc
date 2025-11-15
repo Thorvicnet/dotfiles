@@ -14,9 +14,6 @@ export EDITOR="nvim"
 alias printimage="bash printimage" # Justine's scripts fix because of wine
 alias printvideo="bash printvideo"
 
-alias silverbullet="/opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app-id=gonbiglfmjihmjekgiighiekaidaepcn"
-alias spotify="/opt/brave-bin/brave --profile-directory=Default --app-id=pjibgclleladliembfgfagdaldikeohf </dev/null >/dev/null 2>&1 &!"
-
 alias nv="nvim"
 alias snv="sudo nvim"
 alias la="ls -lah --classify --color"

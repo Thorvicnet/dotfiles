@@ -22,6 +22,7 @@ files_to_link=(
   ".zprofile"
   "custom"
   "nvim"
+  "fuzzel"
   "mimeapps.list"
   "starship.toml"
 )
