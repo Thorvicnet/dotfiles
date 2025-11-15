@@ -48,7 +48,7 @@ require('blink.cmp').setup({
     fuzzy = { implementation = "lua" },
 })
 require("nvim-treesitter.configs").setup({
-      ensure_installed = { "lua","python","rust","ocaml","c" },
+      ensure_installed = { "lua", "python", "rust", "ocaml", "c"},
       highlight = { enable = false },
     })
 
@@ -86,6 +86,37 @@ vim.keymap.set('n', '<leader>li', function()
 end, { desc = 'Toggle inlay hints' })
 
 vim.cmd [[set completeopt+=menuone,noselect,popup]]
+
+vim.lsp.config('*', {
+  capabilities = require('blink.cmp').get_lsp_capabilities(),
+})
+
+vim.lsp.config('texlab', {
+  settings = {
+    texlab = {
+      build = {
+        executable = 'tectonic',
+        args = {
+          '-Z', 'shell-escape',
+          '--synctex',
+          '--keep-logs',
+          '%f',
+	},
+        onSave = true,
+        forwardSearchAfter = true
+      },
+      forwardSearch = {
+        executable = 'zathura',
+        args = {
+          '--synctex-forward', '%l:1:%f', '%p',
+        },
+      },
+      chktex = {
+        onOpenAndSave = true,
+      },
+    },
+  },
+})
 
 vim.lsp.enable({"lua_ls", "clangd", "ocamllsp", "texlab"})
 
