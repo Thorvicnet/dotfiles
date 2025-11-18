@@ -34,7 +34,7 @@ function pdf() {
     done
     exit
 }
-alias here="kitty . </dev/null &>/dev/null & disown"
+alias here="foot </dev/null &>/dev/null & disown"
 alias sn="shutdown now"
 alias rb="reboot"
 alias hb="systemctl hibernate"
@@ -99,6 +99,7 @@ source /home/thorvicnet/.config/zsh-syntax-highlighting/fast-syntax-highlighting
 # rg
 # fd
 # impala
+# powertop
 
 alias nixclean="nix-store --gc"
 alias deepclean="(yes | paru -Scc) && sudo journalctl --vacuum-time=7d && (nix-store --gc >/dev/null 1&>/dev/null) && (sudo pacman -Qdtq | sudo pacman -Rns -)"
