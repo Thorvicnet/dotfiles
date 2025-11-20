@@ -18,8 +18,6 @@ alias nv="nvim"
 alias snv="sudo nvim"
 alias la="ls -lah --classify --color"
 
-alias proxunset="~/.config/custom/proxy.sh off"
-alias proxschool="~/.config/custom/proxy.sh on"
 alias prux="paru --sudoflags '-E'"
 alias colloscope="pdf ~/Documents/ColloscopeMP\&I2526version1809.pdf"
 
