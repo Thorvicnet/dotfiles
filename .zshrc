@@ -1,18 +1,14 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-SPACESHIP_PROMPT_ASYNC=true
-SPACESHIP_PROMPT_ADD_NEWLINE=true
-bindkey -e
+bindkey -v
+bindkey "^?" backward-delete-char # fix vi mode else
 zstyle :compinstall filename '/home/thorvicnet/.zshrc'
 
 autoload -Uz compinit # compinit is slow
 compinit
 
-export EDITOR="nvim"
-
-alias printimage="bash printimage" # Justine's scripts fix because of wine
-alias printvideo="bash printvideo"
+EDITOR="nvim"
 
 alias nv="nvim"
 alias snv="sudo nvim"
@@ -57,6 +53,7 @@ alias mirrorssort="sudo ghostmirror -PmuolsS  /etc/pacman.d/mirrorlist /etc/pacm
 alias nixhaskell="~/.config/custom/nix-shell/haskell.sh"
 alias nixlatex="~/.config/custom/nix-shell/latex.sh"
 alias nixocaml="~/.config/custom/nix-shell/ocaml.sh"
+alias nixtypst="~/.config/custom/nix-shell/typst.sh"
 
 alias fixscreen="wlr-randr --output HDMI-A-1 --pos 0,0 && wlr-randr --output DP-1 --pos 1920,0"
 
@@ -87,8 +84,25 @@ function touchscreen() {
   }
 source /home/thorvicnet/.config/custom/nix-shell/brun.sh
 
-eval "$(starship init zsh)"
+# SPACESHIP_PROMPT_ASYNC=true
+# SPACESHIP_PROMPT_ADD_NEWLINE=true
+# eval "$(starship init zsh)"
+setopt promptsubst
+VIMODE='[i]'
+function zle-keymap-select zle-line-init {
+  case $KEYMAP in
+    vicmd) VIMODE='%F{green}%B[n]%b%f' ;;
+    viins|main) VIMODE='[i]' ;;
+  esac
+  zle reset-prompt
+}
+zle -N zle-keymap-select
+zle -N zle-line-init
+PROMPT='%B%F{blue}%~%b%f '
+RPROMPT='%(?..%F{red}[%?]%f | )$VIMODE | %F{white}%B%D{%H:%M:%S}%b%f'
+
 eval "$(zoxide init zsh)"
+alias cd="z"
 source <(fzf --zsh)
 source /home/thorvicnet/.config/zsh-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
@@ -124,3 +138,12 @@ alias deepclean="(yes | paru -Scc) && sudo journalctl --vacuum-time=7d && (nix-s
 # fi
 
 # xfreerdp /v:100.126.107.18 /f /dynamic-resolution /clipboard /sound # To connect to remote desktop
+
+# nix under proxy:
+# sudo systemctl edit nix-daemon 
+# 
+# [Service]
+# Environment="http_proxy=http://10.0.0.1:3128"
+# Environment="https_proxy=http://10.0.0.1:3128"
+#
+# sudo systemctl restart nix-daemon

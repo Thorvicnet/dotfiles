@@ -118,7 +118,7 @@ vim.lsp.config('texlab', {
   },
 })
 
-vim.lsp.enable({"lua_ls", "clangd", "ocamllsp", "texlab", "marksman"})
+vim.lsp.enable({"lua_ls", "clangd", "ocamllsp", "texlab", "marksman", "tinymist"})
 
 -- To stop nvim from detecting header files as cpp files
 vim.filetype.add({
