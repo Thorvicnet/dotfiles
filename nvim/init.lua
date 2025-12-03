@@ -37,13 +37,13 @@ vim.pack.add({
     {src = "https://github.com/nvim-treesitter/nvim-treesitter"},
     {src = "https://github.com/folke/flash.nvim"},
     {src = "https://github.com/saghen/blink.cmp"},
-    {src = "https://github.com/nvim-mini/mini.pairs"},
+    -- {src = "https://github.com/nvim-mini/mini.pairs"},
     {src = "https://github.com/folke/which-key.nvim"},
     {src = "https://github.com/Eandrju/cellular-automaton.nvim"},
     {src = "https://github.com/ibhagwan/fzf-lua"}
 })
 require "flash".setup()
-require("mini.pairs").setup()
+-- require("mini.pairs").setup()
 require('blink.cmp').setup({
     fuzzy = { implementation = "lua" },
 })

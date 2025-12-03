@@ -22,6 +22,7 @@ files_to_link=(
   "custom"
   "nvim"
   "fuzzel"
+  "discordo"
   "mimeapps.list"
   "starship.toml"
 )

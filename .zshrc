@@ -10,6 +10,10 @@ compinit
 
 EDITOR="nvim"
 
+source ~/.config/.env # For env vars
+
+alias discord="discordo --token $DISCORD_TOKEN"
+
 alias nv="nvim"
 alias snv="sudo nvim"
 alias la="ls -lah --classify --color"
@@ -82,6 +86,7 @@ function touchscreen() {
         echo "Usage: touchscreen <true|false>"
     fi
   }
+alias nrun="nix-shell --command zsh -p"
 source /home/thorvicnet/.config/custom/nix-shell/brun.sh
 
 # SPACESHIP_PROMPT_ASYNC=true
@@ -114,7 +119,8 @@ source /home/thorvicnet/.config/zsh-syntax-highlighting/fast-syntax-highlighting
 # powertop
 
 alias nixclean="nix-store --gc"
-alias deepclean="(yes | paru -Scc) && sudo journalctl --vacuum-time=7d && (nix-store --gc >/dev/null 1&>/dev/null) && (sudo pacman -Qdtq | sudo pacman -Rns -)"
+alias deepclean="(yes | paru -Scc) && sudo journalctl --vacuum-time=7d && (sudo pacman -Qdtq | sudo pacman -Rns -)"
+alias fullclean="deepclean && allclean"
 # # Maintenance
 # nix-store --gc
 #
@@ -132,6 +138,7 @@ alias deepclean="(yes | paru -Scc) && sudo journalctl --vacuum-time=7d && (nix-s
 # paru -Syu
 # nix-channel --update
 
+# # Needs fortune-mod and cowsay
 # if [ -x /usr/bin/fortune -a -x /usr/bin/cowsay ]; then
 #   echo $(fortune science)
 # 	fortune science | cowsay -r
