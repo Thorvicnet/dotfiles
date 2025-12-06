@@ -26,4 +26,5 @@ Y88b. .d88P Y88b.    888  888 888  888  888 888
            .--_/  \\_--.
           /__/      \\__\\
 """
-nix-shell -p ocamlPackages.ocaml-lsp ocamlPackages.ocamlformat ocaml ocamlPackages.findlib ocamlPackages.utop --command zsh
+nix-shell -p ocamlPackages.re ocamlPackages.ocaml-lsp ocamlPackages.ocamlformat ocaml ocamlPackages.findlib ocamlPackages.utop --command zsh
+
