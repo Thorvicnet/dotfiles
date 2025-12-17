@@ -8,7 +8,7 @@ zstyle :compinstall filename '/home/thorvicnet/.zshrc'
 autoload -Uz compinit # compinit is slow
 compinit
 
-EDITOR="nvim"
+export EDITOR="nvim"
 
 source ~/.config/.env # For env vars
 
@@ -58,6 +58,7 @@ alias nixhaskell="~/.config/custom/nix-shell/haskell.sh"
 alias nixlatex="~/.config/custom/nix-shell/latex.sh"
 alias nixocaml="~/.config/custom/nix-shell/ocaml.sh"
 alias nixtypst="~/.config/custom/nix-shell/typst.sh"
+alias nixuiua="~/.config/custom/nix-shell/uiua.sh"
 
 alias fixscreen="wlr-randr --output HDMI-A-1 --pos 0,0 && wlr-randr --output DP-1 --pos 1920,0"
 
