@@ -10,10 +10,6 @@ compinit
 
 export EDITOR="nvim"
 
-source ~/.config/.env # For env vars
-
-alias discord="discordo --token $DISCORD_TOKEN"
-
 alias nv="nvim"
 alias snv="sudo nvim"
 alias la="ls -lah --classify --color"
@@ -50,6 +46,7 @@ alias linpeas="curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/d
 alias towindows="sudo grub-reboot 2 && sudo reboot"
 alias d="date --iso-8601=seconds"
 alias oops="git add . && git commit --amend --no-edit && git push --force-with-lease"
+alias webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
 
 alias mirrorsgen="sudo ghostmirror -PoclLS Belgium,Germany,France /etc/pacman.d/mirrorlist 30 state,outofdate,morerecent,ping"
 alias mirrorssort="sudo ghostmirror -PmuolsS  /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist light state,outofdate,morerecent,estimated,speed"
@@ -117,7 +114,7 @@ source /home/thorvicnet/.config/zsh-syntax-highlighting/fast-syntax-highlighting
 # rg
 # fd
 # impala
-# powertop
+# bluetui
 
 alias nixclean="nix-store --gc"
 alias deepclean="(yes | paru -Scc) && sudo journalctl --vacuum-time=7d && (sudo pacman -Qdtq | sudo pacman -Rns -)"
@@ -155,3 +152,9 @@ alias fullclean="deepclean && allclean"
 # Environment="https_proxy=http://10.0.0.1:3128"
 #
 # sudo systemctl restart nix-daemon
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/thorvicnet/.dart-cli-completion/zsh-config.zsh ]] && . /home/thorvicnet/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
