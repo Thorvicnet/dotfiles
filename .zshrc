@@ -47,6 +47,7 @@ alias towindows="sudo grub-reboot 2 && sudo reboot"
 alias d="date --iso-8601=seconds"
 alias oops="git add . && git commit --amend --no-edit && git push --force-with-lease"
 alias webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
+alias cheese="ffmpeg -f v4l2 -i '/dev/video0' -frames:v 1 -y /tmp/photo.mjpeg -loglevel quiet"
 
 alias mirrorsgen="sudo ghostmirror -PoclLS Belgium,Germany,France /etc/pacman.d/mirrorlist 30 state,outofdate,morerecent,ping"
 alias mirrorssort="sudo ghostmirror -PmuolsS  /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist light state,outofdate,morerecent,estimated,speed"
