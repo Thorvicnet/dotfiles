@@ -36,19 +36,20 @@ alias mute="pactl set-source-mute 1 1"
 alias unmute="pactl set-source-mute 1 0"
 alias bl="bluetoothctl"
 alias reload="source ~/.zshrc"
-alias fixkb="setxkbmap -layout fr"
 alias zshconfig="nvim ~/.zshrc"
 alias uuid="uuidgen"
 alias \?="rax2 -r "
 alias myip="curl https://ipinfo.io/ip"
-alias screenwriting="gromit-mpx"
 alias linpeas="curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh -s"
 alias towindows="sudo grub-reboot 2 && sudo reboot"
 alias d="date --iso-8601=seconds"
 alias oops="git add . && git commit --amend --no-edit && git push --force-with-lease"
 
 alias webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
-alias cheese="ffmpeg -f v4l2 -i '/dev/video0' -frames:v 1 -y /tmp/photo.mjpeg -loglevel quiet"
+alias cheese="ffmpeg -f v4l2 -i '/dev/video0' -frames:v 1 -y /tmp/photo.mjpeg -loglevel quiet && cat /tmp/photo.mjpeg"
+
+alias y="wl-copy"
+alias p="wl-paste"
 
 alias yoink="paru -S"
 alias yeet="paru -Rns"
@@ -62,8 +63,10 @@ alias nixtypst="~/.config/custom/nix-shell/typst.sh"
 alias nixuiua="~/.config/custom/nix-shell/uiua.sh"
 
 alias fixscreen="wlr-randr --output HDMI-A-1 --pos 0,0 && wlr-randr --output DP-1 --pos 1920,0"
+alias fixkb="setxkbmap -layout fr"
 
 alias statusbarreload="pkill -f 'status_daemon' && (nohup ~/.config/suckless/status-daemon/status_daemon >/dev/null 2>&1 < /dev/null & )"
+
 alias termbin='nix-shell -p netcat --run "nc termbin.com 9999"'
 
 alias ts="tailscale"
@@ -122,7 +125,8 @@ source /home/thorvicnet/.config/zsh-syntax-highlighting/fast-syntax-highlighting
 
 alias nixclean="nix-store --gc"
 alias deepclean="(yes | paru -Scc) && sudo journalctl --vacuum-time=7d && (sudo pacman -Qdtq | sudo pacman -Rns -)"
-alias fullclean="deepclean && allclean"
+alias fullclean="deepclean && nixclean"
+
 # # Maintenance
 # nix-store --gc
 #
